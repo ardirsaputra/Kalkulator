@@ -15,54 +15,60 @@ public class kalkulator extends JPanel{
 		Last = "=";
 		setLayout(null);
 		layar = new JButton("0");
-		layar.setFont(new Font("Dialog", Font.BOLD, 12));
+		layar.setFont(new Font("Dialog", Font.BOLD, 16));
 		layar.setHorizontalAlignment(SwingConstants.RIGHT);
 		layar.setBackground(UIManager.getColor("Button.light"));
-		layar.setBounds(14, 15, 420, 25);
+		layar.setBounds(14, 15, 420, 32);
 		layar.setEnabled(false);
 		add(layar);
 		final ActionListener tambahan = new insertAction();
 		final ActionListener perintah = new commandAction();
 		final ActionListener action = new Action();
 		panel = new JPanel();
-		panel.setFont(new Font("Noto Sans CJK TC Thin", Font.PLAIN, 12));
-		panel.setBounds(14, 52, 420, 163);
-		panel.setLayout(new GridLayout(6,5));
-		addbutton("X.10^Y",perintah);
-		addbutton("Phi",action);
-		addbutton("Negasi",action);          
-		addbutton("+1",action);            
-		addbutton("reset",action);
-		addbutton("X^Y",perintah);
-		addbutton("Akar",action);          
-		addbutton("Real",action);
-		addbutton("-1",action);              
-		addbutton("%",action);                  
-		addbutton("sin",action);
-		addbutton("7",tambahan);
-		addbutton("8",tambahan);
-		addbutton("9",tambahan);
-		addbutton("/",perintah);
-		addbutton("cos",action);
-		addbutton("4",tambahan);
-		addbutton("5",tambahan);
-		addbutton("6",tambahan);
-		addbutton("x",perintah);
-		addbutton("tan",action);
-		addbutton("1",tambahan);
-		addbutton("2",tambahan);
-		addbutton("3",tambahan);
-		addbutton("+",perintah);
-		addbutton("X!",action);            
-		addbutton("0",tambahan);
-		addbutton(".",tambahan);
-		addbutton("=",perintah);
-		addbutton("-",perintah);
+		panel.setBounds(14, 52, 420, 192);
+		panel.setLayout(null);
+		
+		addbutton("x.10^y",perintah,0,0,80,32);
+		addbutton("Phi",action,80, 0, 80,32);
+		addbutton("Negasi",action,160,0,80,32);                   
+		addbutton("reset",action,240,0,160,32);
+		
+		addbutton("x^y",perintah,0,32,80,32);
+		addbutton("Akar",action,80,32,80,32);          
+		addbutton("Real",action,160,32,80,32);              
+		addbutton("C",action,240,32,80,32);  
+		addbutton("%",action,320,32,80,32);
+		
+		addbutton("7",tambahan,0,64,80,32);
+		addbutton("8",tambahan,80,64,80,32);
+		addbutton("9",tambahan,160,64,80,32);
+		addbutton("x",perintah,240,64,80,32);
+		addbutton("X!",action,320,64,80,32);
+		
+		addbutton("4",tambahan,0,96,80,32);
+		addbutton("5",tambahan,80,96,80,32);
+		addbutton("6",tambahan,160,96,80,32);
+		addbutton("/",perintah,240,96,80,32);
+		addbutton("sin",action,320,96,80,32);
+		
+		addbutton("1",tambahan,0,128,80,32);
+		addbutton("2",tambahan,80,128,80,32);
+		addbutton("3",tambahan,160,128,80,32);
+		addbutton("+",perintah,240,128,80,32);
+		addbutton("cos",action,320,128,80,32);
+		
+		addbutton("0",tambahan,0,160,80,32);            
+		addbutton(".",tambahan,80,160,80,32);
+		addbutton("=",perintah,160,160,80,32);
+		addbutton("-",perintah,240,160,80,32);
+		addbutton("tan",action,320,160,80,32);
+		
 		add(panel);
 	}
-	void addbutton (final String label,final ActionListener listener) {
+	void addbutton (final String label,final ActionListener listener,int a,int b,int c , int d) {
 		final JButton button = new JButton (label);
 		button.setFont(new Font("Dialog", Font.PLAIN, 13));
+		button.setBounds(a,b,c,d);
 		button.addActionListener(listener);
 		panel.add(button);
 	}
@@ -83,13 +89,13 @@ public class kalkulator extends JPanel{
 		else if (Last.equals("=")) {
 			Hasil=x;
 		}
-		else if (Last.equals("X^Y")) {
+		else if (Last.equals("x^y")) {
 			Hasil=Math.pow(Hasil,x);
 		}
 		else if (Last.equals("%")) {
 			Hasil=x/100;
 		}
-		else if (Last.equals("X.10^Y")) {
+		else if (Last.equals("x.10^y")) {
 			final double by = Math.pow(10, x);
 			Hasil = Hasil * by;
 		}
@@ -112,18 +118,6 @@ public class kalkulator extends JPanel{
 			if (action.equals("Phi")) {
 				TempDouble = Double.parseDouble(layar.getText());
 				TempDouble = TempDouble *22/7;
-				Hasil = TempDouble;
-				layar.setText(""+Hasil);
-			}
-			if (action.equals("-1")) {
-				TempDouble = Double.parseDouble(layar.getText());
-				TempDouble = TempDouble - 1;
-				Hasil = TempDouble;
-				layar.setText(""+Hasil);
-			}
-			if (action.equals("+1")) {
-				TempDouble = Double.parseDouble(layar.getText());
-				TempDouble = TempDouble + 1;
 				Hasil = TempDouble;
 				layar.setText(""+Hasil);
 			}
@@ -161,7 +155,7 @@ public class kalkulator extends JPanel{
 				layar.setText(""+Hasil);
 				mulai=true;
 			}
-			if (action.equals("X!")) {
+			if (action.equals("x!")) {
 				TempDouble = Double.parseDouble(layar.getText());
 				final int TempInt = (int)(TempDouble*1);
 				Double TempHasil = 1.0;
@@ -191,6 +185,14 @@ public class kalkulator extends JPanel{
 				TempDouble=Math.cos(TempDouble);
 				Hasil = TempDouble;
 				layar.setText(""+Hasil);
+			}
+			if(action.equals("C")) {
+				String A = layar.getText();
+				if (A.length()>0) {
+					String TempString = layar.getText();
+					String B = TempString.substring(0, TempString.length()-1);
+					layar.setText(B);
+				}
 			}
 		}
 	}
