@@ -10,7 +10,7 @@ import java.awt.Window.Type;
 			Layar.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 			Layar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			kalkulator isi = new kalkulator();
-			Layar.setIconImage(Toolkit.getDefaultToolkit().getImage(Kalkulator.class.getResource("/Resources/kalkulator.png")));
+			Layar.setIconImage(Toolkit.getDefaultToolkit().getImage(Kalkulator.class.getResource("/Resources/iconkalkulator.png")));
 			Layar.getContentPane().add(isi, BorderLayout.CENTER);
 			isi.setLayout(null);
 			Layar.setSize(428,255);
